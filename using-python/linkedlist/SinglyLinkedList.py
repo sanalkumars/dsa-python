@@ -19,7 +19,14 @@ class SinglyLinkedList:
         else:
             self.head = temp
     
-   
+    def insertStart(self,value):
+        newnode = Node(value)
+        if self.head is None:
+            self.head= newnode
+            return
+        temp = self.head
+        self.head = newnode
+        newnode.next = temp
 
     def printLinkedList(self):
         if self.head is None:
