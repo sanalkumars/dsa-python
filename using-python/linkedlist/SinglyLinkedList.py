@@ -47,6 +47,28 @@ class SinglyLinkedList:
         newnode.next = current.next
         current.next= newnode
 
+    def deleteNode(self , value ):
+        if self.head is None:
+            print("List is empty")
+            return 
+        prev = None
+        temp = self.head
+
+        if( value == self.head.data):
+            self.head = self.head.next
+            print(f"element { value } has been removed from the list")
+            self.printLinkedList()
+            return
+        while(temp.next and temp.data != value):
+            prev = temp
+            temp = temp.next
+        if( temp.data == value):
+            prev .next = temp.next
+            self.printLinkedList()
+        else:
+            print(f"Element { value } not found in the list")
+
+
     def printLinkedList(self):
         if self.head is None:
             return
@@ -67,5 +89,7 @@ list.insertEnd(50)
 # list.insertStart(20)
 
 list.inserAtAnywhere(60,3)
-list.printLinkedList()
+# list.printLinkedList()
+
+list.deleteNode(50)
         
