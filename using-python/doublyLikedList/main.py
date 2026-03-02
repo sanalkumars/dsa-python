@@ -64,7 +64,26 @@ class DoublyLinkedList:
         if temp is not None:
             temp.prev = newnode
         
+    def deleteNode(self , value):
+        if self.head is None:
+            print("Linked list is empty")
+        temp = self.head
+        if( temp.data == value):
+            self.head = temp.next
+            self.head.prev = None
+            return
 
+        while( temp.next is not None):
+            if( temp.data !=value):
+                temp = temp.next
+            elif( temp.data == value):
+                temp.prev.next = temp.next
+                temp.next.prev = temp.prev
+                return
+        print(f'The value {value} is not present in the list')
+        return
+            
+        
 
     def printLinkedList(self):
         if self.head is None:
