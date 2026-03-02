@@ -1,5 +1,5 @@
 
-// brute force approach
+// brute force approach ( this have o(nlogn) time complexity)
 // function secondLargest( arr ) {
 
 //     let uniqueArrset = new Set(arr); //this convert the array that contains duplicates in to a set
@@ -14,10 +14,10 @@
 // let secondLarget = secondLargest([ 1,5,4,1,2,6,5,12,2,4,11])
 // console.log("second larget element is ",secondLarget)
 
-// Optimised version
+// Optimised version (this version have o(n) time complexity)
 function optimisedVersion(arr) {
-    let l = -1;
-    let secondL = -1;
+    let l = Number.NEGATIVE_INFINITY;
+    let secondL = Number.NEGATIVE_INFINITY;
     if( arr.length < 2) return
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] > l ) {
