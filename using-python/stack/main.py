@@ -21,7 +21,7 @@ class stack:
     # function for printing the top element of the stack
     def peek(self):
         if self.stacklength() == 0:
-            print("Stack is empty || stack is in underflow condition")
+            raise Exception("Stack is empty || stack is in underflow condition")
         else:
             top_element = self.stacklist[-1]
             print(f"Top element of the stack: {top_element}")
@@ -29,7 +29,7 @@ class stack:
     # function for printing the stack elements
     def printStack(self):
         if self.stacklength() == 0:
-            print("Stack is empty || stack is in underflow condition")
+            raise Exception("Stack is empty || stack is in underflow condition")
         else:
             print("Stack elements:")
             for element in reversed(self.stacklist):
