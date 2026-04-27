@@ -12,9 +12,11 @@ function findUniqueSubstrings(s) {
         }
         
     }
-    console.log(seenStr)
-    return [ ...seenStr]
+    // console.log(seenStr)
+    // if u want to return the number of unique substrings
+    return {substrs :[ ...seenStr] , count :seenStr.size}
 }
 
-let substrings = findUniqueSubstrings("abac")
-console.log("unique sub strings are ", substrings)
+let {substrs , count} = findUniqueSubstrings("abac")
+console.log("unique sub strings are ", substrs)
+console.log("total unique sub strings are ", count)
