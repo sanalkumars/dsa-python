@@ -1,0 +1,118 @@
+
+class Node :
+    def __init__(self , value):
+        self.val = value
+        self.left = None
+        self.right = None
+
+class BST :
+    def __init__(self):
+        self.root = None
+    
+    # insertion in a BST 
+
+    def insert( self , value):
+        if self.root is None:
+            self.root = Node(value)
+        else:
+            self._inertHelper(self.root , value)
+
+    
+
+    def _inertHelper(self ,current, value ):
+        if value < current.val:
+            if current.left is None:
+                current.left = Node(value)
+            else:
+                self._inertHelper(current.left , value)
+        elif value > current.val:
+            if current.right is None:
+                current.right = Node(value)
+            else:
+                self._inertHelper(current.right, value)
+
+    def searchNode(self , value):
+        return self._searchHelper(self.root , value)
+
+
+    def _searchHelper( self , node , value):
+        if node is None :
+            return False
+        if node.val == value:
+            return True
+        elif value < node.val:
+            return self._searchHelper(node.left, value)
+        else :
+            return self._searchHelper(node.right, value)
+
+    from collections import deque
+    def breathFirstSearch(self):
+        if not self.root:
+            return
+        queue = self.deque([self.root])
+        while queue:
+            node = queue.popleft()
+            print(node.val,end=" ")
+            if node.left :
+                queue.append(node.left)
+            if node.right :
+                queue.append(node.right)
+    
+    # node deletion 
+    def deleteNode(self, val):
+        if self.searchNode(val):  # Check if node exists
+            self.root = self.deleteNodeHelper(self.root, val)
+            return True
+        return False
+        
+        
+    def deleteNodeHelper( self, node, val):
+        if not node :
+            return  None
+        if val < node.val :
+            return self.deleteNodeHelper( node.left , val)
+        elif val > node.val:
+            return self.deleteNodeHelper(node.right , val)
+        else: #found the node
+            #case one (leaf node)
+            if not node.left and not node.right:
+                return None
+            #case2 one child node
+            if not node.left:
+                return node.right
+            if not node.right:
+                return node.left
+            # two child node present 
+            successor = self.findMin(node.right)
+            node.val = successor.val
+            node.right = self.deleteNodeHelper(node.right , successor.val)
+        return node
+            
+
+
+           
+
+    def findMin( self ,node ):
+        current = node
+        while current.left:
+            current = current.left
+        return current
+
+
+        
+        
+        
+
+        
+bst = BST()
+    
+    # Insert values
+values = [50, 30, 70, 20, 40, 60, 80]
+for val in values:
+    bst.insert(val)
+
+
+
+# bst.breathFirstSearch()
+print(" Search result is  :", bst.searchNode(20))  
+print(" Deleted result is  :", bst.deleteNode(20))  
