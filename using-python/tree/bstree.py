@@ -93,7 +93,7 @@ class BST :
         current = self.root
         while current is not None  and current.val != key:
             current = current.left if key < current.val else current.right
-        return current.val
+        return current
             
     # find the successor
     def find_Successor(self , key):
@@ -148,7 +148,19 @@ class BST :
         return current.val
 
 
+    # height of the tree
+    def height_Of_Node(self, key):
+        # find the node first
+        node = self.find_node(key)
+        return self.getHeight(node)
+
         
+        # compute the height 
+    
+    def getHeight( self , node):
+        if node is None:
+            return -1
+        return 1 + max( self.getHeight(node.left) , self.getHeight(node.right))
         
         
 
@@ -166,7 +178,9 @@ for val in values:
 # print(" Search result is  :", bst.searchNode(20))  
 # print(" Deleted result is  :", bst.deleteNode(20))  
 
-print("the successor of the value 45",bst.find_Successor(45))
-print("the predecessor of the value 45",bst.find_Predecessor(45))
+# print("the successor of the value 45",bst.find_Successor(45))
+# print("the predecessor of the value 45",bst.find_Predecessor(45))
 
-print("node found ",bst.find_node(30))
+
+# print("node found ",bst.find_node(30))
+print("Height of the node is :",bst.height_Of_Node(40))
