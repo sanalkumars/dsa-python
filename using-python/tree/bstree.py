@@ -87,8 +87,51 @@ class BST :
             node.val = successor.val
             node.right = self.deleteNodeHelper(node.right , successor.val)
         return node
+    
+    # search/find node
+    def find_node( self , key):
+        current = self.root
+        while current is not None  and current.val != key:
+            current = current.left if key < current.val else current.right
+        return current.val
             
+    # find the successor
+    def find_Successor(self , key):
+        candidate = None
+        curr = self.root
 
+        while curr is not None:
+            if key < curr.val:
+                candidate = curr
+                curr = curr.left
+            elif key > curr.val:
+                curr = curr.right
+            else:
+                # found the node/key
+                if curr.right is not None :
+                    return self.findMin(curr.right)
+                break
+        return candidate.val
+     
+
+    # find the predecessor 
+    def find_Predecessor( self , key):
+        candidate = None
+        curr = self.root
+
+        while curr is not None:
+            if key < curr.val:
+                curr = curr.left
+            elif key > curr.val:
+                candidate = curr
+                curr = curr.right
+            else:
+                # we found the key in the tree , here two case if there is a left subtree with max-value then return that , else returnt 
+                # current candidate 
+                if curr.left is not None:
+                    return self.findMax(curr.left)
+                break
+        return candidate.val
 
            
 
@@ -96,7 +139,13 @@ class BST :
         current = node
         while current.left:
             current = current.left
-        return current
+        return current.val
+    
+    def findMax(self , node):
+        current = node
+        while current.right:
+            current = current.right
+        return current.val
 
 
         
@@ -107,12 +156,17 @@ class BST :
 bst = BST()
     
     # Insert values
-values = [50, 30, 70, 20, 40, 60, 80]
+values = [20, 30, 40, 45, 50, 60, 70, 80]
 for val in values:
     bst.insert(val)
 
 
 
 # bst.breathFirstSearch()
-print(" Search result is  :", bst.searchNode(20))  
-print(" Deleted result is  :", bst.deleteNode(20))  
+# print(" Search result is  :", bst.searchNode(20))  
+# print(" Deleted result is  :", bst.deleteNode(20))  
+
+print("the successor of the value 45",bst.find_Successor(45))
+print("the predecessor of the value 45",bst.find_Predecessor(45))
+
+print("node found ",bst.find_node(30))
