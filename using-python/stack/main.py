@@ -1,6 +1,7 @@
 class stack:
     def __init__(self):
         self.stacklist =[]
+        self.minStack =[]
 
     def stacklength(self):
         return len(self.stacklist)
@@ -8,7 +9,12 @@ class stack:
     # function for adding an element to the stack
     def push(self,element):
         self.stacklist.append(element)
+        if len(self.minStack) > 0:
+            self.minStack.append( min( element , self.minStack[-1]))
+        else: self.minStack.append(element)
         print("Element added to the stack")
+        
+       
 
     # function for removing an element from the stack and printing the element removed
     def pop(self):
@@ -35,12 +41,23 @@ class stack:
             for element in reversed(self.stacklist):
                 print(element,"--")
 
+    def getminStack(self):
+        if len(self.minStack) > 0:
+            print("min value in the stack is ",self.minStack[-1])
+            return self.minStack[-1]
+        else: return -1
+
+        
+
+
 
 newstack = stack()
 newstack.push(10)
 newstack.push(20)
 newstack.push(30)
 newstack.printStack()
-newstack.pop()
+# newstack.pop()
 newstack.peek()
 newstack.printStack()
+
+newstack.getminStack()
