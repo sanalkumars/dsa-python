@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self,data,next=None):
+    def __init__(self,data=0,next=None):
         self.data = data
         self.next = next
 
@@ -78,6 +78,27 @@ class SinglyLinkedList:
                 print(current.data,"->")
                 current=current.next
             # print(current.data)
+    def linkedlistfromList(self, values):
+        dummy = Node()
+        current = dummy
+        for v in values:
+            current.next = Node(v)
+            current = current.next
+        self.head = dummy.next
+        return self.head
+    
+    def reverseList(self ):
+        if  self.head is None: return
+        dummy = Node(0 , self.head)
+        curr = dummy
+        prev = None
+
+        while curr:
+            temp = curr.next
+            curr.next = prev 
+            prev = curr
+            curr = temp
+        return prev
 
 list = SinglyLinkedList()
 
